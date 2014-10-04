@@ -313,7 +313,7 @@ if (is_directory($currentdir) && $handle = opendir($currentdir)) {
   					"name" => $file,
 					"date" => filemtime($currentdir . "/" . $file),
 					"size" => filesize($currentdir . "/" . $file),
-	  				"html" => "<li><a href='" . $currentdir . "/" . $file . "' title='$file'><em-pdf>" . padstring($file, 20) . "</em-pdf><span></span><img src='" . GALLERY_ROOT . "images/filetype_" . $extension . ".png' width='$thumb_size' height='$thumb_size' alt='$file' /></a>" . $filename_caption . "</li>"
+	  				"html" => "<li><a href='" . $currentdir . "/" . $file . "' title='$file'><em>" . padstring($file, 20) . "</em><span></span><img src='" . GALLERY_ROOT . "images/filetype_" . $extension . ".png' width='$thumb_size' height='$thumb_size' alt='$file' /></a>" . $filename_caption . "</li>"
 	  			);
 			}
 		}
