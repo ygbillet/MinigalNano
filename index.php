@@ -307,8 +307,23 @@ if (is_directory($currentdir) && $handle = opendir($currentdir)) {
 			if (preg_match("/.ppt$|.pptx$/i", $file)) $extension = "PPTX"; //Powerpoint
 			if (preg_match("/.xls$|.xlsx$/i", $file)) $extension = "XLXS"; // Excel
 			if (preg_match("/.ogv$/i", $file)) $extension = "OGV"; // OGV video
+			if (preg_match("/.mp4$/i", $file)) $extension = "HTML5VIDEO"; // OGV video
 
-			if ($extension != "") {
+			// If user put a thumb for video in `thumbs_other`, we use it.
+			if ($extension === "HTML5VIDEO") {
+				$thumb = GALLERY_ROOT . "thumbs_other/" . $file . ".png";
+				$em = "Video";
+				if (!file_exists($thumb)) {
+					$em = padstring($file, 20);
+					$thumb = GALLERY_ROOT . "images/filetype_VIDEO.png";
+				}
+  				$files[] = array (
+  					"name" => $file,
+					"date" => filemtime($currentdir . "/" . $file),
+					"size" => filesize($currentdir . "/" . $file),
+	  				"html" => "<li><a href='" . $currentdir . "/" . $file . "' title='$file' rel='lightbox'><em>$em</em><span></span><img src='$thumb' width='$thumb_size' height='$thumb_size' alt='$file' /></a>" . $filename_caption . "</li>"
+	  			);
+			} else if ($extension != "") {
   				$files[] = array (
   					"name" => $file,
 					"date" => filemtime($currentdir . "/" . $file),

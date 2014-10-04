@@ -348,12 +348,48 @@ var Mediabox;
 				preload = new Image();
 				preload.onload = startEffect;
 				preload.src = URL;
-// FLV, MP4
-			} else if (URL.match(/\.flv|\.mp4/i) || mediaType == 'video') {
+// FLV
+			} else if (URL.match(/\.flv/i) || mediaType == 'video') {
 				mediaType = 'obj';
 				mediaWidth = mediaWidth || options.defaultWidth;
 				mediaHeight = mediaHeight || options.defaultHeight;
 				if (options.useNB) {
+				preload = new Swiff(''+options.playerpath+'?mediaURL='+URL+'&allowSmoothing=true&autoPlay='+options.autoplay+'&buffer=6&showTimecode='+options.showTimecode+'&loop='+options.medialoop+'&controlColor='+options.controlColor+'&controlBackColor='+options.controlBackColor+'&defaultVolume='+options.volume+'&scaleIfFullScreen=true&showScalingButton=true&crop=false', {
+					id: 'MediaboxSWF',
+					width: mediaWidth,
+					height: mediaHeight,
+					params: {wmode: options.wmode, bgcolor: options.bgcolor, allowscriptaccess: options.scriptaccess, allowfullscreen: options.fullscreen}
+					});
+				} else {
+				preload = new Swiff(''+options.JWplayerpath+'?file='+URL+'&backcolor='+options.backcolor+'&frontcolor='+options.frontcolor+'&lightcolor='+options.lightcolor+'&screencolor='+options.screencolor+'&autostart='+options.autoplay+'&controlbar='+options.controlbar, {
+					id: 'MediaboxSWF',
+					width: mediaWidth,
+					height: mediaHeight,
+					params: {wmode: options.wmode, bgcolor: options.bgcolor, allowscriptaccess: options.scriptaccess, allowfullscreen: options.fullscreen}
+					});
+				}
+				startEffect();
+// MP4
+			} else if (URL.match(/\.mp4/i) || mediaType == 'video') {
+				mediaType = 'obj';
+				mediaWidth = mediaWidth || options.defaultWidth;
+				mediaHeight = mediaHeight || options.defaultHeight;
+				if (options.html5) { //(MP4 = MPEG 4 files with H264 video codec and AAC audio codec)
+				mediaType = 'url';
+				// videosource = ;
+				preload = new Element('video', {
+					'width': mediaWidth,
+					'height': mediaHeight,
+					'autoplay': '',
+					'controls': '',
+					'name': 'media'
+				}).adopt(new Element('source', {
+					'src': URL,
+					'type': 'video/mp4'
+				}))
+				// preload.adopt(videosource);
+				}
+				else if (options.useNB) {
 				preload = new Swiff(''+options.playerpath+'?mediaURL='+URL+'&allowSmoothing=true&autoPlay='+options.autoplay+'&buffer=6&showTimecode='+options.showTimecode+'&loop='+options.medialoop+'&controlColor='+options.controlColor+'&controlBackColor='+options.controlBackColor+'&defaultVolume='+options.volume+'&scaleIfFullScreen=true&showScalingButton=true&crop=false', {
 					id: 'MediaboxSWF',
 					width: mediaWidth,
