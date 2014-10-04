@@ -68,13 +68,7 @@ if (!function_exists('exif_read_data') && $display_exif == 1) {
 //-----------------------
 function is_directory($filepath)
 {
-	// $filepath must be the entire system path to the file
-	if (!@opendir($filepath)) {
-		return FALSE;
-	} else {
-		return TRUE;
-		closedir($filepath);
-	}
+	return @is_dir($filepath);
 }
 
 function padstring($name, $length)
