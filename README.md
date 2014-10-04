@@ -44,11 +44,19 @@ Using a custom image for folders
 * Create `folder.jpg` inside a folder: This image will be used as default image for folder.
 
 
-Thumbnails
+Thumbnails for photos
 =========
 
 You do not have to care about thumbnails: They are automatically created in the `thumbs` directory.
 If some thumbnails are wrong, you can purge this directory: Thumbnails will be automatically re-created.
+
+Thumbnails for mp4 video files.
+=========
+
+If you want thumbnails for video files, you must create them manually and place them in the `thumbs_other` directory.
+The thumbnail filename is composed with the video filename (including extension) + .png extension.
+
+If the video filename is : `myvideo.mp4`, the thumbnails filename must be : `myvideo.mp4.png`
 
 --------------------------------------------------
 
