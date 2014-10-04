@@ -78,10 +78,10 @@ function padstring($name, $length)
 		$length = $label_max_length;
 	}
 	if (strlen($name) > $length) {
-	  return substr($name,0,$length) . "...";
-   } else {
+		return substr($name,0,$length) . "...";
+	} else {
 		return $name;
-   }
+	}
 }
 
 function getfirstImage($dirname)
