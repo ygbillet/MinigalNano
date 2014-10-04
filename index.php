@@ -321,7 +321,7 @@ if (is_directory($currentdir) && $handle = opendir($currentdir)) {
   					"name" => $file,
 					"date" => filemtime($currentdir . "/" . $file),
 					"size" => filesize($currentdir . "/" . $file),
-	  				"html" => "<li><a href='" . $currentdir . "/" . $file . "' title='$file' rel='lightbox'><em>$em</em><span></span><img src='$thumb' width='$thumb_size' height='$thumb_size' alt='$file' /></a>" . $filename_caption . "</li>"
+	  				"html" => "<li><a href='" . $currentdir . "/" . $file . "' title='$file' rel='lightbox[billeder]'><em>$em</em><span></span><img src='$thumb' width='$thumb_size' height='$thumb_size' alt='$file' /></a>" . $filename_caption . "</li>"
 	  			);
 			} else if ($extension != "") {
   				$files[] = array (
